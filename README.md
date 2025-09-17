@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 CineBlog – Blog de Cinema com Next.js + Tailwind
 
-## Getting Started
+Um blog responsivo e moderno para publicar críticas e análises de filmes, com foco em produções premiadas no Oscar.  
+Projeto feito em **Next.js App Router** usando **Tailwind CSS**.
 
-First, run the development server:
+## ✨ Funcionalidades
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Layout Global** com navegação entre **Home** e **Sobre**, design escuro e consistente.
+- **Página Inicial** listando posts com título, resumo, data e link para leitura completa.
+- **Posts Dinâmicos** (`/posts/[slug]`) com:
+  - Conteúdo completo do artigo
+  - Metadados (título, data, autor)
+  - **Botão de Curtir** interativo com contador.
+- **Página Sobre** apresentando o CineBlog, contato e redes sociais.
+- **Pesquisa Modal** na navbar para encontrar posts rapidamente.
+- **Design Responsivo** mobile-first e tipografia otimizada.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗️ Tecnologias
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js 14](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [lucide-react](https://lucide.dev/) – ícones
+- Google Fonts – Inter & Playfair Display
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔌 Arquitetura
 
-## Learn More
+**Server Components (padrão)**
 
-To learn more about Next.js, take a look at the following resources:
+- `app/layout.tsx`
+- `app/page.tsx`
+- `app/about/page.tsx`
+- `app/posts/[slug]/page.tsx`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Client Components**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `components/LikeButton.tsx` – botão de curtir com `useState`
+- `components/Navbar.tsx` – modal de busca e eventos de teclado
+- `components/Search.tsx` – filtro em tempo real
