@@ -3,24 +3,28 @@ import LikeButton from "@/components/LikeButton";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-export async function generateStaticParams() {
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+}: PostPageProps): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
   if (!post) return {};
   return {
-    title: `${post.title} — Monograph`,
+    title: `${post.title} — CineBlog`,
     description: post.excerpt,
   };
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: PostPageProps) {
   const post = getPostBySlug(params.slug);
   if (!post) return notFound();
 
