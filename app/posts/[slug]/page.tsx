@@ -3,19 +3,15 @@ import LikeButton from "@/components/LikeButton";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-interface PostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
-}: PostPageProps): Promise<Metadata> {
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
   if (!post) return {};
   return {
@@ -24,7 +20,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function PostPage({ params }: PostPageProps) {
+export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   if (!post) return notFound();
 
